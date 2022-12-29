@@ -5,5 +5,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Shared\Sellow.Modules.Shared.Infrastructure\Sellow.Modules.Shared.Infrastructure.csproj" />
+    </ItemGroup>
     
 </Project>

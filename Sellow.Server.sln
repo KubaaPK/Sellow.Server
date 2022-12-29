@@ -4,6 +4,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5AEFD8BE-FEC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sellow.Bootstrapper", "src\Sellow.Bootstrapper\Sellow.Bootstrapper.csproj", "{FC12DEBE-11A6-4140-BD79-3759695EC340}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{31CD9E6A-F2B8-4F48-A4EF-7A2A4CC645A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sellow.Modules.Shared.Abstractions", "src\Shared\Sellow.Modules.Shared.Abstractions\Sellow.Modules.Shared.Abstractions.csproj", "{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sellow.Modules.Shared.Infrastructure", "src\Shared\Sellow.Modules.Shared.Infrastructure\Sellow.Modules.Shared.Infrastructure.csproj", "{EB00F1A9-20D5-493D-BEAA-D072590B76DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +17,22 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FC12DEBE-11A6-4140-BD79-3759695EC340} = {5AEFD8BE-FECE-4776-960F-DE8DF6B6F35E}
+		{31CD9E6A-F2B8-4F48-A4EF-7A2A4CC645A6} = {5AEFD8BE-FECE-4776-960F-DE8DF6B6F35E}
+		{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E} = {31CD9E6A-F2B8-4F48-A4EF-7A2A4CC645A6}
+		{EB00F1A9-20D5-493D-BEAA-D072590B76DA} = {31CD9E6A-F2B8-4F48-A4EF-7A2A4CC645A6}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FC12DEBE-11A6-4140-BD79-3759695EC340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC12DEBE-11A6-4140-BD79-3759695EC340}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC12DEBE-11A6-4140-BD79-3759695EC340}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC12DEBE-11A6-4140-BD79-3759695EC340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FF20B9-AA81-4C8F-A78B-0821BA64BE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB00F1A9-20D5-493D-BEAA-D072590B76DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB00F1A9-20D5-493D-BEAA-D072590B76DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB00F1A9-20D5-493D-BEAA-D072590B76DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB00F1A9-20D5-493D-BEAA-D072590B76DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
