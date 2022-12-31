@@ -28,4 +28,8 @@ public sealed record Email
 
         Value = value;
     }
+
+    public static implicit operator Email(string email) => new(email);
+
+    public static implicit operator string(Email email) => email.Value;
 }
