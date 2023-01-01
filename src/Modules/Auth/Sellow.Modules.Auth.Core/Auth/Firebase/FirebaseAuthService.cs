@@ -1,5 +1,6 @@
 using FirebaseAdmin.Auth;
 using Microsoft.Extensions.Logging;
+using Sellow.Modules.Auth.Core.Auth.Firebase.Exceptions;
 
 namespace Sellow.Modules.Auth.Core.Auth.Firebase;
 
@@ -23,7 +24,38 @@ internal sealed class FirebaseAuthService : IAuthService
             Disabled = true,
             EmailVerified = false
         });
-        
+
         _logger.LogInformation("Firebase user '{Id}' has been created", user.Id);
+    }
+
+    public async Task ActivateUser(Guid id)
+    {
+        try
+        {
+            var firebaseUser = await FirebaseAuth.DefaultInstance.GetUserAsync(id.ToString());
+
+            if (firebaseUser.EmailVerified)
+            {
+                throw new FirebaseUserNotFoundOrIsAlreadyActivatedException();
+            }
+
+            await FirebaseAuth.DefaultInstance.UpdateUserAsync(new UserRecordArgs
+            {
+                Uid = id.ToString(),
+                Disabled = false,
+                EmailVerified = true
+            });
+
+            _logger.LogInformation("Firebase user '{Id}' has been activated", id);
+        }
+        catch (FirebaseAuthException exception)
+        {
+            if (exception.AuthErrorCode == AuthErrorCode.UserNotFound)
+            {
+                throw new FirebaseUserNotFoundOrIsAlreadyActivatedException();
+            }
+
+            throw;
+        }
     }
 }

@@ -27,4 +27,12 @@ internal sealed class AuthController : ControllerBase
     [HttpGet("users/{id:guid}")]
     [ApiExplorerSettings(IgnoreApi = true)]
     public Guid GetUser(Guid id) => id;
+
+    [HttpGet("auth/activate-user/{id:guid}")]
+    public async Task<IActionResult> ActivateUser(Guid id)
+    {
+        await _mediator.Send(new ActivateUser(id));
+
+        return Ok();
+    }
 }
