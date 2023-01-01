@@ -1,6 +1,8 @@
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Sellow.Modules.Shared.Infrastructure.Options;
 
 namespace Sellow.Modules.Auth.Core.Auth.Firebase;
@@ -16,6 +18,21 @@ internal static class Extensions
             Credential = GoogleCredential.FromFile(firebaseAuthOptions.ApiKeyFilePath),
             ProjectId = firebaseAuthOptions.ProjectId
         });
+
+        services
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = firebaseAuthOptions.Authority;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = firebaseAuthOptions.ValidIssuer,
+                    ValidateAudience = true,
+                    ValidAudience = firebaseAuthOptions.ValidAudience,
+                    ValidateLifetime = true
+                };
+            });
 
         services.AddScoped<IAuthService, FirebaseAuthService>();
 

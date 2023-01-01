@@ -1,6 +1,8 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sellow.Modules.Auth.Core.Features;
+using Sellow.Modules.Shared.Infrastructure.Auth;
 
 namespace Sellow.Modules.Auth.Api.Controllers;
 
@@ -35,4 +37,8 @@ internal sealed class AuthController : ControllerBase
 
         return Ok();
     }
+
+    [Authorize]
+    [HttpGet]
+    public Guid AuthTest() => User.GetUserId();
 }
