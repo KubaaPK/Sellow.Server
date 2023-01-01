@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Shared\Sellow.Modules.Shared.Infrastructure\Sellow.Modules.Shared.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Sellow.Modules.Auth.IntegrationEvents\Sellow.Modules.Auth.IntegrationEvents.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Sellow.Modules.Auth.Api"/>
+    </ItemGroup>
+</Project>
