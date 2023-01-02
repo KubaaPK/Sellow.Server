@@ -1,8 +1,6 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sellow.Modules.Auth.Core.Features;
-using Sellow.Modules.Shared.Infrastructure.Auth;
 
 namespace Sellow.Modules.Auth.Api.Controllers;
 
@@ -18,6 +16,14 @@ internal sealed class AuthController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Create a new user.
+    /// </summary>
+    /// <response code="201">User has been successfully created.</response>
+    /// <response code="400">Request validation has failed.</response>
+    /// <response code="409">User with given credentials already exists.</response>
+    /// <response code="500">Internal server error.</response>
+    [ProducesResponseType(201)]
     [HttpPost("users")]
     public async Task<IActionResult> CreateUser([FromBody] CreateUser command)
     {
@@ -30,6 +36,12 @@ internal sealed class AuthController : ControllerBase
     [ApiExplorerSettings(IgnoreApi = true)]
     public Guid GetUser(Guid id) => id;
 
+    /// <summary>
+    /// Activate a user.
+    /// </summary>
+    /// <response code="200">User has been successfully activated.</response>
+    /// <response code="422">User has not been found or is activated already.</response>
+    /// <response code="500">Internal server error.</response>
     [HttpGet("auth/activate-user/{id:guid}")]
     public async Task<IActionResult> ActivateUser(Guid id)
     {
