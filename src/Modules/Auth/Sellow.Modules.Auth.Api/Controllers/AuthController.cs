@@ -37,8 +37,4 @@ internal sealed class AuthController : ControllerBase
 
         return Ok();
     }
-
-    [Authorize]
-    [HttpGet]
-    public Guid AuthTest() => User.GetUserId();
 }
