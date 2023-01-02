@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Sellow.Modules.Auth.Core.Auth;
@@ -8,7 +9,17 @@ using Sellow.Modules.Auth.IntegrationEvents;
 
 namespace Sellow.Modules.Auth.Core.Features;
 
-internal sealed record CreateUser(string Email, string Username, string Password) : IRequest<Guid>;
+internal sealed record CreateUser : IRequest<Guid>
+{
+    [Required] [EmailAddress] public string Email { get; init; }
+
+    [Required]
+    [MinLength(3)]
+    [MaxLength(20)]
+    public string Username { get; init; }
+
+    [Required] [MinLength(6)] public string Password { get; init; }
+}
 
 internal sealed class CreateUserHandler : IRequestHandler<CreateUser, Guid>
 {
