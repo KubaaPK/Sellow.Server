@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ModulesEmailSending\Sellow.Modules.EmailSending.Core\Sellow.Modules.EmailSending.Core.csproj" />
       <ProjectReference Include="..\Modules\Auth\Sellow.Modules.Auth.Api\Sellow.Modules.Auth.Api.csproj" />
       <ProjectReference Include="..\Shared\Sellow.Modules.Shared.Infrastructure\Sellow.Modules.Shared.Infrastructure.csproj" />
     </ItemGroup>

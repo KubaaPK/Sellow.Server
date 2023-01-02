@@ -1,4 +1,5 @@
 using Sellow.Modules.Auth.Api;
+using Sellow.Modules.EmailSending.Core;
 using Sellow.Modules.Shared.Infrastructure;
 using Sellow.Modules.Shared.Infrastructure.Logging;
 
@@ -8,7 +9,8 @@ builder.Services.AddControllers();
 builder.Services
     .AddEndpointsApiExplorer()
     .AddInfrastructure()
-    .AddAuthModule();
+    .AddAuthModule()
+    .AddEmailSendingModule();
 
 var app = builder.Build();
 
