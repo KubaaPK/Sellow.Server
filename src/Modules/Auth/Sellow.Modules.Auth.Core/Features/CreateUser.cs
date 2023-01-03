@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Sellow.Modules.Auth.Core.Auth;
@@ -19,6 +20,25 @@ internal sealed record CreateUser : IRequest<Guid>
     public string Username { get; init; }
 
     [Required] [MinLength(6)] public string Password { get; init; }
+}
+
+internal class CreateUserValidator : AbstractValidator<CreateUser>
+{
+    public CreateUserValidator()
+    {
+        RuleFor(x => x.Email)
+            .NotEmpty().WithMessage("E-mail address is required.")
+            .EmailAddress().WithMessage("Invalid e-mail address.");
+
+        RuleFor(x => x.Username)
+            .NotEmpty().WithMessage("Username is required.")
+            .MinimumLength(3).WithMessage("Username must be at least 3 characters long.")
+            .MaximumLength(20).WithMessage("Username can have up to 20 characters.");
+
+        RuleFor(x => x.Password)
+            .NotEmpty().WithMessage("Password is required.")
+            .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
+    }
 }
 
 internal sealed class CreateUserHandler : IRequestHandler<CreateUser, Guid>
